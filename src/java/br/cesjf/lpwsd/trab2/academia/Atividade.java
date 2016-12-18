@@ -9,7 +9,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Atividade implements Serializable {
-    private String nomeAtividade;
+    private String nomeAtividade = "";
     private String status;
     private float valor;
     @Id

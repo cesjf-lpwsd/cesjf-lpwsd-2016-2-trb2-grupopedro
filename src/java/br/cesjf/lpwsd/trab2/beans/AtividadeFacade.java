@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.cesjf.lpwsd.trab2.academia;
+package br.cesjf.lpwsd.trab2.beans;
 
+import br.cesjf.lpwsd.trab2.academia.Atividade;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Dara
  */
 @Stateless
-public class AlunoFacade extends AbstractFacade<Aluno> {
+public class AtividadeFacade extends AbstractFacade<Atividade> {
 
     @PersistenceContext(unitName = "Trab2PU")
     private EntityManager em;
@@ -24,8 +25,8 @@ public class AlunoFacade extends AbstractFacade<Aluno> {
         return em;
     }
 
-    public AlunoFacade() {
-        super(Aluno.class);
+    public AtividadeFacade() {
+        super(Atividade.class);
     }
     
 }

@@ -1,5 +1,6 @@
-package br.cesjf.lpwsd.trab2.academia;
+package br.cesjf.lpwsd.trab2.beans;
 
+import br.cesjf.lpwsd.trab2.academia.Aluno;
 import br.cesjf.lpwsd.trab2.academia.util.JsfUtil;
 import br.cesjf.lpwsd.trab2.academia.util.PaginationHelper;
 
@@ -16,29 +17,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("atividadeController")
+@Named("alunoController")
 @SessionScoped
-public class AtividadeController implements Serializable {
+public class AlunoController implements Serializable {
 
-    private Atividade current;
+    private Aluno current;
     private DataModel items = null;
     @EJB
-    private br.cesjf.lpwsd.trab2.academia.AtividadeFacade ejbFacade;
+    private br.cesjf.lpwsd.trab2.beans.AlunoFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public AtividadeController() {
+    public AlunoController() {
     }
 
-    public Atividade getSelected() {
+    public Aluno getSelected() {
         if (current == null) {
-            current = new Atividade();
+            current = new Aluno();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private AtividadeFacade getFacade() {
+    private AlunoFacade getFacade() {
         return ejbFacade;
     }
 
@@ -66,13 +67,13 @@ public class AtividadeController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Atividade) getItems().getRowData();
+        current = (Aluno) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Atividade();
+        current = new Aluno();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -80,7 +81,7 @@ public class AtividadeController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AtividadeCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AlunoCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -89,7 +90,7 @@ public class AtividadeController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Atividade) getItems().getRowData();
+        current = (Aluno) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -97,7 +98,7 @@ public class AtividadeController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AtividadeUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AlunoUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -106,7 +107,7 @@ public class AtividadeController implements Serializable {
     }
 
     public String destroy() {
-        current = (Atividade) getItems().getRowData();
+        current = (Aluno) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -130,7 +131,7 @@ public class AtividadeController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AtividadeDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AlunoDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -186,21 +187,21 @@ public class AtividadeController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public Atividade getAtividade(java.lang.Long id) {
+    public Aluno getAluno(java.lang.Long id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = Atividade.class)
-    public static class AtividadeControllerConverter implements Converter {
+    @FacesConverter(forClass = Aluno.class)
+    public static class AlunoControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            AtividadeController controller = (AtividadeController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "atividadeController");
-            return controller.getAtividade(getKey(value));
+            AlunoController controller = (AlunoController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "alunoController");
+            return controller.getAluno(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
@@ -220,11 +221,11 @@ public class AtividadeController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Atividade) {
-                Atividade o = (Atividade) object;
+            if (object instanceof Aluno) {
+                Aluno o = (Aluno) object;
                 return getStringKey(o.getId());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Atividade.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Aluno.class.getName());
             }
         }
 

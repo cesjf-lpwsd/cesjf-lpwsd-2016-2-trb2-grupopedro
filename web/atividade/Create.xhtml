@@ -21,10 +21,7 @@
                     <h:inputText id="status" value="#{atividadeController.selected.status}" title="#{bundle.CreateAtividadeTitle_status}" />
                     <h:outputLabel value="#{bundle.CreateAtividadeLabel_valor}" for="valor" />
                     <h:inputText id="valor" value="#{atividadeController.selected.valor}" title="#{bundle.CreateAtividadeTitle_valor}" />
-                    <h:outputLabel value="#{bundle.CreateAtividadeLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{atividadeController.selected.id}" title="#{bundle.CreateAtividadeTitle_id}" />
-                    <h:outputLabel value="#{bundle.CreateAtividadeLabel_turma}" for="turma" />
-                    <h:inputText id="turma" value="#{atividadeController.selected.turma}" title="#{bundle.CreateAtividadeTitle_turma}" />
+                  
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{atividadeController.create}" value="#{bundle.CreateAtividadeSaveLink}" />
