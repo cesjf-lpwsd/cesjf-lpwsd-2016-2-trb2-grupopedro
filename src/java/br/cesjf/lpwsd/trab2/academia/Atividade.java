@@ -1,6 +1,5 @@
 
 package br.cesjf.lpwsd.trab2.academia;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.persistence.Entity;
@@ -19,20 +18,10 @@ public class Atividade implements Serializable {
     private ArrayList<String> turma = new ArrayList<String> ();
 
     public Atividade() {
-        nomeAtividade = "";
     }
     public void inserirAtividade(Aluno a){
         turma.add(a.getNome());
     }
-    
-    public float getValor() {
-        return valor;
-    }
-
-    public void setValor(float valor) {
-        this.valor = valor;
-    }
-
     public String getNomeAtividade() {
         return nomeAtividade;
     }
@@ -49,6 +38,14 @@ public class Atividade implements Serializable {
         this.status = status;
     }
 
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
+    }
+
     public Long getId() {
         return id;
     }
@@ -56,5 +53,13 @@ public class Atividade implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
+    public ArrayList<String> getTurma() {
+        return turma;
+    }
+
+    public void setTurma(ArrayList<String> turma) {
+        this.turma = turma;
+    }
+
 }
