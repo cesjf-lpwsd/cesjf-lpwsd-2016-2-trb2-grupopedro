@@ -37,6 +37,21 @@ public class AtividadeTest {
     public void tearDown() {
     }
 
+    @Test
+    public void testGetValor() {
+       Atividade a = new Atividade();
+       assertEquals(0.0, a.getValor(), 0.001);
+    }
+
+    @Test
+    public void testSetValor() {
+         Atividade a = new Atividade();
+         a.setValor(50f);
+         assertEquals(50.0, a.getValor(), 0.001);
+    }
+
+    
+    
     
     @Test
     public void testGetAtividade(){
